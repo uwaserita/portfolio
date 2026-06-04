@@ -427,7 +427,7 @@ footer{
 
 /* CURSOR */
 .cursor-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-.cursor-ring{width:26px;height:26px;border-radius:50%;border:1px solid rgba(201,168,76,.5);position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,widt[...]
+.cursor-ring{width:26px;height:26px;border-radius:50%;border:1px solid rgba(201,168,76,.5);position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s}
 
 /* HERO */
 .hero-deco{animation:float 7s ease-in-out infinite}
@@ -461,6 +461,7 @@ footer{
   font-size:12px;letter-spacing:.12em;text-transform:uppercase;
   cursor:pointer;display:inline-flex;align-items:center;gap:.75rem;
   position:relative;overflow:hidden;margin-top:.5rem;align-self:flex-start;
+  transition:all .3s;
 }
 .btn-send::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .btn-send:hover::before{transform:translateX(0)}
@@ -474,11 +475,13 @@ footer{
   position:fixed;bottom:2rem;right:2rem;padding:1rem 1.5rem;
   background:var(--ink);color:var(--cream);font-size:13px;letter-spacing:.05em;
   display:flex;align-items:center;gap:.75rem;
-  transform:translateY(80px);opacity:0;transition:all .45s cubic-bezier(.22,1,.36,1);z-index:500;
+  border-radius:4px;
+  transform:translateY(100px);opacity:0;transition:all .45s cubic-bezier(.22,1,.36,1);z-index:500;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
 }
 .toast.show{transform:translateY(0);opacity:1}
-.toast-icon-ok{color:var(--gold)}
-.toast-icon-err{color:#e07070}
+.toast-icon-ok{color:var(--gold);font-weight:bold}
+.toast-icon-err{color:#ff6b6b;font-weight:bold}
 
 /* SECTION EYEBROW */
 .section-eyebrow{display:inline-flex;align-items:center;gap:.5rem}
@@ -875,7 +878,7 @@ footer{
     document.getElementById('btn-icon').textContent='⟳';
     emailjs.send('service_1xy7s1r','template_6qm2bwe',{name,email,message})
       .then(()=>{
-        showToast('Message sent! I'll get back to you soon ✦', true);
+        showToast('Message sent successfully! I'll get back to you soon ✦', true);
         document.getElementById('cf-name').value='';
         document.getElementById('cf-email').value='';
         document.getElementById('cf-message').value='';
@@ -890,6 +893,7 @@ footer{
         document.getElementById('btn-icon').textContent='↗';
       });
   });
+  
   // Nav scroll effect
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll',()=>{
