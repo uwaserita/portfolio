@@ -1,132 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Uwaserita</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .content {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .section {
-            margin-bottom: 2rem;
-        }
-        
-        .section h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
-        }
-        
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-        
-        .skill {
-            background: #f0f0f0;
-            padding: 1rem;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: 500;
-        }
-        
-        footer {
-            text-align: center;
-            color: white;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uwase — UX/UI Designer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF8F3;
+  --ink:#1A1814;
+  --gold:#C9A84C;
+  --gold-light:#EDD98A;
+  --muted:#7A7468;
+  --card-bg:#F3F0E8;
+  --border:#E2DDD4;
+  --accent:#3D5A4C;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 2rem;
+  background:rgba(26,24,20,0.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,168,76,.18);
+  transition:padding .3s,background .3s;
+}
+nav.scrolled{
+  padding:.6rem 2rem;
+  background:rgba(26,24,20,0.99);
+  box-shadow:0 4px 32px rgba(0,0,0,.25);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:300;letter-spacing:.18em;
+  color:var(--cream);text-decoration:none;
+  position:relative;
+}
+.nav-logo::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .3s cubic-bezier(.22,1,.36,1);
+}
+.nav-logo:hover::after{width:100%}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center}
+.nav-links li{position:relative}
+.nav-links a{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(250,248,243,.55);text-decoration:none;
+  padding:.4rem .9rem;display:block;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:.9rem;right:.9rem;
+  height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .25s cubic-bezier(.22,1,.36,1);
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{
+  padding:.4rem 1.2rem;
+  border:1px solid rgba(201,168,76,.5);
+  color:var(--gold)!important;
+  font-size:11px!important;letter-spacing:.18em;
+  text-transform:uppercase;text-decoration:none;
+  transition:all .25s!important;
+}
+.nav-cta:hover{background:var(--gold);color:var(--ink)!important}
+.nav-cta::after{display:none!important}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:56px;
+  background:var(--cream);
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 3.5rem 4rem 4rem;
+  position:relative;
+}
+.hero-left::before{
+  content:'';position:absolute;
+  bottom:0;left:4rem;right:0;
+  height:1px;background:linear-gradient(to right,var(--border),transparent);
+}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,7.5vw,6.5rem);
+  font-weight:300;line-height:.95;letter-spacing:-.02em;
+  margin-bottom:2rem;
+}
+.hero-name em{font-style:italic;color:var(--gold)}
+.hero-desc{
+  color:var(--muted);font-size:14px;max-width:360px;
+  margin-bottom:2.5rem;line-height:1.9;
+  border-left:1px solid var(--border);
+  padding-left:1.25rem;
+}
+.hero-cta{
+  display:flex;gap:1rem;align-items:center;flex-wrap:wrap;
+  margin-bottom:3rem;
+}
+.btn-primary{
+  padding:.8rem 2.2rem;
+  background:var(--ink);color:var(--cream);
+  border:none;font-family:'DM Sans',sans-serif;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;
+  text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;
+  position:relative;overflow:hidden;
+}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--accent);transform:translateX(-101%);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.btn-primary span{position:relative;z-index:1}
+.btn-primary:hover::before{transform:translateX(0)}
+.btn-outline{
+  padding:.8rem 2.2rem;
+  background:transparent;color:var(--ink);
+  border:1px solid rgba(26,24,20,.2);
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;
+  text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.hero-right{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--card-bg) 0%,#EDE8DC 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-right::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-visual{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:3rem;position:relative;
+}
+.hero-card{
+  width:260px;background:var(--cream);
+  padding:2rem;position:relative;
+  box-shadow:0 24px 64px rgba(26,24,20,.1);
+}
+.hero-card-tag{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.hero-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:400;margin-bottom:.75rem;
+}
+.hero-card-meta{
+  font-size:12px;color:var(--muted);
+  display:flex;flex-direction:column;gap:.25rem;
+}
+.hero-card-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);display:inline-block;margin-right:.5rem;
+}
+.hero-deco{
+  position:absolute;width:120px;height:120px;
+  border:0.5px solid var(--border);
+  top:2rem;right:2rem;
+}
+.hero-deco2{
+  position:absolute;width:60px;height:60px;
+  border:0.5px solid var(--gold-light);
+  bottom:3rem;left:3rem;
+}
+.hero-photo-wrap{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+  z-index:2;
+}
+.hero-photo-frame{
+  width:320px;height:400px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-photo-frame::before{
+  content:'';position:absolute;
+  inset:0;z-index:1;
+  background:linear-gradient(to bottom, transparent 60%, rgba(250,248,243,.15) 100%);
+}
+.hero-photo-frame::after{
+  content:'';
+  position:absolute;
+  top:-2px;left:-2px;right:-2px;bottom:-2px;
+  border:1.5px solid rgba(201,168,76,.35);
+  z-index:2;
+  pointer-events:none;
+}
+.hero-photo{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  filter:contrast(1.03) brightness(1.02);
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.hero-photo-frame:hover .hero-photo{transform:scale(1.04)}
+.hero-photo-badge{
+  position:absolute;
+  bottom:2.5rem;right:-1.5rem;
+  background:var(--ink);
+  color:var(--cream);
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:.55rem 1rem;
+  display:flex;align-items:center;gap:.5rem;
+  box-shadow:0 8px 24px rgba(26,24,20,.2);
+  z-index:3;
+  animation:fadeUp .6s .8s cubic-bezier(.22,1,.36,1) both;
+}
+.hero-photo-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;
+}
+.hero-photo-tag{
+  position:absolute;
+  top:1.5rem;left:-1.5rem;
+  background:var(--cream);
+  padding:.5rem .9rem;
+  border:0.5px solid var(--border);
+  box-shadow:0 8px 24px rgba(26,24,20,.1);
+  z-index:3;
+  animation:fadeUp .6s .6s cubic-bezier(.22,1,.36,1) both;
+}
+.stats-row{
+  display:flex;gap:0;margin-top:0;padding-top:0;
+  border:none;
+}
+.stat-item{
+  display:flex;flex-direction:column;
+  padding-right:2rem;margin-right:2rem;
+  border-right:0.5px solid var(--border);
+}
+.stat-item:last-child{border-right:none;margin-right:0;padding-right:0}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:300;line-height:1;color:var(--ink);
+}
+.stat-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+
+/* SECTIONS */
+section{padding:6rem 3rem}
+.section-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:4rem}
+.section-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:4rem;font-weight:300;color:var(--border);
+  line-height:1;
+}
+.section-eyebrow{
+  font-size:10px;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.25rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;
+}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1rem;line-height:1.9}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.value-card{
+  padding:1.25rem;
+  border:0.5px solid var(--border);
+  background:var(--card-bg);
+}
+.value-icon{font-size:1.2rem;margin-bottom:.5rem}
+.value-name{
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:500;color:var(--ink);
+}
+
+/* WORK */
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.work-item{
+  position:relative;overflow:hidden;
+  background:var(--card-bg);
+  padding:2.5rem;
+  cursor:pointer;
+  transition:background .3s;
+  min-height:300px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.work-item:hover{background:#ECEAE3}
+.work-item.featured{grid-column:span 2;min-height:380px}
+.work-tag{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.work-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:400;margin-bottom:.75rem;line-height:1.2;
+}
+.work-desc{font-size:13px;color:var(--muted);max-width:420px}
+.work-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:2rem;
+}
+.work-tools{display:flex;gap:.5rem;flex-wrap:wrap}
+.tool-badge{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:.25rem .65rem;
+  border:0.5px solid var(--border);color:var(--muted);
+}
+.work-arrow{
+  font-size:1.2rem;color:var(--muted);
+  transition:transform .2s,color .2s;
+}
+.work-item:hover .work-arrow{transform:translate(4px,-4px);color:var(--ink)}
+.work-num{
+  position:absolute;top:2rem;right:2rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:300;color:rgba(26,24,20,.05);
+  line-height:1;
+}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.skill-group-name{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);font-weight:500;
+  margin-bottom:1rem;padding-bottom:.75rem;
+  border-bottom:0.5px solid var(--border);
+}
+.skill-list{display:flex;flex-direction:column;gap:.65rem}
+.skill-row{display:flex;align-items:center;justify-content:space-between}
+.skill-name{font-size:13px;color:var(--muted)}
+.skill-bar{width:100px;height:2px;background:var(--border);position:relative;margin-left:1rem}
+.skill-fill{height:100%;background:var(--gold);position:absolute;left:0;top:0}
+
+/* CONTACT */
+.contact-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:start;
+}
+.contact-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:300;line-height:1.1;margin-bottom:1.5rem;
+}
+.contact-big em{font-style:italic;color:var(--gold)}
+.contact-sub{color:var(--muted);font-size:14px;max-width:340px;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:.75rem}
+.contact-link{
+  display:flex;align-items:center;gap:.75rem;
+  color:var(--muted);text-decoration:none;font-size:13px;
+  transition:color .2s;
+}
+.contact-link:hover{color:var(--ink)}
+.contact-link-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+.contact-form{display:flex;flex-direction:column;gap:1.25rem}
+.form-field{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.form-input{
+  padding:.75rem 0;
+  background:transparent;
+  border:none;border-bottom:0.5px solid var(--border);
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);
+  outline:none;transition:border-color .2s;
+}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--border)}
+
+/* FOOTER */
+footer{
+  border-top:0.5px solid var(--border);
+  padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-copy{font-size:12px;color:var(--muted);letter-spacing:.05em}
+.footer-made{font-size:12px;color:var(--muted)}
+.footer-made em{font-style:normal;color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes float2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.15)}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.animate{opacity:0;animation:fadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.35s}
+.delay-4{animation-delay:.5s}.delay-5{animation-delay:.65s}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.93);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* PROGRESS BAR */
+#nav-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));z-index:200;width:0%;transition:width .1s linear}
+
+/* CURSOR */
+.cursor-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{width:26px;height:26px;border-radius:50%;border:1px solid rgba(201,168,76,.5);position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s}
+
+/* HERO */
+.hero-deco{animation:float 7s ease-in-out infinite}
+.hero-deco2{animation:float2 9s ease-in-out infinite}
+.hero-card{transition:transform .3s,box-shadow .3s}
+.hero-card:hover{transform:translateY(-6px) rotate(.5deg);box-shadow:0 32px 80px rgba(26,24,20,.15)}
+
+/* WORK */
+.work-item{transition:background .3s,transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.work-item:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(26,24,20,.09)}
+
+/* VALUE CARDS */
+.value-card{transition:transform .25s,box-shadow .25s}
+.value-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(26,24,20,.08)}
+
+/* SKILL BARS */
+.skill-fill{width:0!important;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+.skill-fill.animated{width:var(--target-width)!important}
+
+/* CONTACT FORM */
+.form-field{position:relative}
+.form-underline{position:absolute;bottom:0;left:0;height:1px;background:var(--gold);width:0;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.form-field:focus-within .form-underline{width:100%}
+.form-label{transition:color .2s}
+.form-field:focus-within .form-label{color:var(--gold)}
+
+/* SEND BUTTON */
+.btn-send{
+  padding:.85rem 2.5rem;background:var(--ink);color:var(--cream);
+  border:none;font-family:'DM Sans',sans-serif;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;display:inline-flex;align-items:center;gap:.75rem;
+  position:relative;overflow:hidden;margin-top:.5rem;align-self:flex-start;
+}
+.btn-send::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.btn-send:hover::before{transform:translateX(0)}
+.btn-send span,.btn-send .icon{position:relative;z-index:1}
+.btn-send .icon{transition:transform .3s}
+.btn-send:hover .icon{transform:translate(4px,-4px)}
+.btn-send:disabled{opacity:.55;cursor:not-allowed}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;padding:1rem 1.5rem;
+  background:var(--ink);color:var(--cream);font-size:13px;letter-spacing:.05em;
+  display:flex;align-items:center;gap:.75rem;
+  transform:translateY(80px);opacity:0;transition:all .45s cubic-bezier(.22,1,.36,1);z-index:500;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon-ok{color:var(--gold)}
+.toast-icon-err{color:#e07070}
+
+/* SECTION EYEBROW */
+.section-eyebrow{display:inline-flex;align-items:center;gap:.5rem}
+.section-eyebrow::before{content:'';display:inline-block;width:0;height:1px;background:var(--gold);transition:width .6s .2s cubic-bezier(.22,1,.36,1)}
+.reveal.visible .section-eyebrow::before{width:24px}
+
+/* SPINNING ORB HERO */
+.hero-orb{
+  position:absolute;width:300px;height:300px;border-radius:50%;
+  border:0.5px solid rgba(201,168,76,.15);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:spinSlow 20s linear infinite;
+}
+.hero-orb::after{
+  content:'';position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);top:0;left:50%;transform:translateX(-50%);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0 3rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .about-grid,.contact-wrap{grid-template-columns:1fr}
+  .skills-wrap{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .work-item.featured{grid-column:span 1}
+  nav{padding:1rem 1.5rem}
+  section{padding:4rem 1.5rem}
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>👋 Welcome to My Portfolio</h1>
-        <p>Full-Stack Developer | Creative Problem Solver</p>
-    </header>
-    
-    <div class="content">
-        <div class="section">
-            <h2>About Me</h2>
-            <p>
-                Hello! I'm Uwaserita, a passionate developer creating amazing web experiences.
-                I love building projects that make a difference and learning new technologies.
-            </p>
-        </div>
-        
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="skills">
-                <div class="skill">HTML/CSS</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">React</div>
-                <div class="skill">Git & GitHub</div>
-                <div class="skill">Web Design</div>
-                <div class="skill">Problem Solving</div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>Projects</h2>
-            <p>Check out my repositories on GitHub to see my latest work and contributions.</p>
-        </div>
+
+<nav id="main-nav">
+  <a href="#" class="nav-logo">U W A S E</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow animate delay-1">Kigali, Rwanda</p>
+    <h1 class="hero-name animate delay-2">UX<em>/</em>UI<br>Designer<em>.</em></h1>
+    <p class="hero-desc animate delay-3">
+      Crafting digital experiences rooted in faith, integrity, and discipline. Specializing in mobile-first design for East African users — from fintech to marketplace apps.
+    </p>
+    <div class="hero-cta animate delay-4">
+      <a href="#work" class="btn-primary"><span>View Work</span></a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
-    
-    <footer>
-        <p>Connect with me:</p>
-        <a href="https://github.com/uwaserita">GitHub</a>
-        <p>&copy; 2026 Uwaserita. All rights reserved.</p>
-    </footer>
+    <div class="stats-row animate delay-5">
+      <div class="stat-item">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Domains</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Vision</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-deco"></div>
+      <div class="hero-deco2"></div>
+      <div class="hero-orb"></div>
+      <div class="hero-photo-wrap animate delay-3">
+        <div class="hero-photo-frame">
+          <img src="https://via.placeholder.com/320x400/C9A84C/FAF8F3?text=Your+Photo" alt="Portfolio photo" style="width:100%;height:100%;object-fit:cover"/>
+        </div>
+        <div class="hero-photo-badge">
+          <span class="hero-photo-badge-dot"></span>
+          <span>Available for work</span>
+        </div>
+        <div class="hero-photo-tag">
+          <span class="hero-card-tag" style="margin:0">UX/UI Designer · Kigali 🇷🇼</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div>
+      <p class="section-eyebrow">About</p>
+      <h2 class="section-title">Designer & Trader in Training</h2>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a UX/UI designer based in Kigali, Rwanda, building digital solutions that speak to East African users — in their language, context, and currency.</p>
+      <p>My work spans fintech, marketplace apps, and safety tools. I care deeply about how design shapes behavior, and I bring the same discipline I apply to trading markets into every pixel I design.</p>
+      <p>Beyond design, I'm growing as a trader — finding patterns, managing risk, and building long-term vision. Two crafts, one mindset: precision with purpose.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">✦</div>
+        <div class="value-name">Faith</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◈</div>
+        <div class="value-name">Integrity</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">▲</div>
+        <div class="value-name">Discipline</div>
+      </div>
+      <div class="value-card" style="background:var(--ink);border-color:var(--ink)">
+        <div class="value-icon" style="color:var(--gold)">★</div>
+        <div class="value-name" style="color:var(--cream)">Excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section id="work" style="padding-left:0;padding-right:0">
+  <div style="padding:0 3rem">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <p class="section-eyebrow">Selected Work</p>
+        <h2 class="section-title">Projects & Case Studies</h2>
+      </div>
+    </div>
+  </div>
+  <div class="work-grid">
+    <div class="work-item featured">
+      <span class="work-num">01</span>
+      <div>
+        <p class="work-tag">Fintech · Mobile App · Rwanda</p>
+        <h3 class="work-title">Kuukutopia — Farmer Marketplace</h3>
+        <p class="work-desc">A mobile-first marketplace for farmers and sellers in Rwanda, featuring payment history, earnings dashboards, and MTN/Airtel mobile money integration in RWF.</p>
+      </div>
+      <div class="work-bottom">
+        <div class="work-tools">
+          <span class="tool-badge">Figma</span>
+          <span class="tool-badge">HTML Prototype</span>
+          <span class="tool-badge">Mobile Money</span>
+          <span class="tool-badge">RWF Currency</span>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </div>
+    <div class="work-item">
+      <span class="work-num">02</span>
+      <div>
+        <p class="work-tag">Safety App · Dark Theme</p>
+        <h3 class="work-title">Safeguard SOS</h3>
+        <p class="work-desc">Emergency alert app with live location sharing and one-touch SOS. Designed with high-contrast dark UI for stressful, low-light use cases.</p>
+      </div>
+      <div class="work-bottom">
+        <div class="work-tools">
+          <span class="tool-badge">Figma</span>
+          <span class="tool-badge">Dark UI</span>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </div>
+    <div class="work-item">
+      <span class="work-num">03</span>
+      <div>
+        <p class="work-tag">Social · Habit Design</p>
+        <h3 class="work-title">UnPlug — Digital Detox App</h3>
+        <p class="work-desc">Seed-stage app targeting social media addiction in young East Africans (18��25). Grounded in behavioral psychology with habit replacement features.</p>
+      </div>
+      <div class="work-bottom">
+        <div class="work-tools">
+          <span class="tool-badge">Pitch Deck</span>
+          <span class="tool-badge">UX Strategy</span>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </div>
+    <div class="work-item">
+      <span class="work-num">04</span>
+      <div>
+        <p class="work-tag">Data · Sustainability</p>
+        <h3 class="work-title">Hello Renewables — TREPA</h3>
+        <p class="work-desc">Structured beneficiary registration data for solar energy projects across multiple villages in Bugesera District, Rwanda. Data entry & validation.</p>
+      </div>
+      <div class="work-bottom">
+        <div class="work-tools">
+          <span class="tool-badge">Excel</span>
+          <span class="tool-badge">Data Entry</span>
+        </div>
+        <span class="work-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div>
+      <p class="section-eyebrow">Capabilities</p>
+      <h2 class="section-title">Skills & Tools</h2>
+    </div>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-group">
+      <p class="skill-group-name">Design</p>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-name">Figma</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Prototyping</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">UX Research</span><div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">UI Systems</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Mobile-First</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-name">Development</p>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-name">HTML/CSS</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Interactive Prototypes</span><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Excel / Data</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Figma Variants</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-name">Business</p>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-name">Trading Strategy</span><div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Pitch Decks</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Product Strategy</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Brand Identity</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <div>
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Let's Build Something</h2>
+    </div>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <h2 class="contact-big">Open to <em>opportunities</em> & collaborations</h2>
+      <p class="contact-sub">Whether it's a design project, a trading conversation, or something entirely new — I'm here.</p>
+      <div class="contact-links">
+        <a href="#" class="contact-link"><span class="contact-link-dot"></span>Kigali, Rwanda</a>
+        <a href="tel:+250780697082" class="contact-link"><span class="contact-link-dot"></span>+250 780 697 082</a>
+        <a href="mailto:uwaserita123@gmail.com" class="contact-link"><span class="contact-link-dot"></span>uwaserita123@gmail.com</a>
+        <a href="#" class="contact-link"><span class="contact-link-dot"></span>Available for freelance & internships</a>
+        <a href="#" class="contact-link"><span class="contact-link-dot"></span>Open to East Africa & remote roles</a>
+      </div>
+    </div>
+    <div class="contact-form" id="contact-form">
+      <div class="form-field">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" id="cf-name" type="text" placeholder="Jane Doe"/>
+        <div class="form-underline"></div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="cf-email" type="email" placeholder="jane@example.com"/>
+        <div class="form-underline"></div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Message</label>
+        <textarea class="form-input" id="cf-message" rows="3" placeholder="Tell me about your project…" style="resize:none;padding-top:.75rem"></textarea>
+        <div class="form-underline"></div>
+      </div>
+      <button class="btn-send" id="send-btn">
+        <span id="btn-text">Send Message</span>
+        <span class="icon" id="btn-icon">↗</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Uwase — All rights reserved</span>
+  <span class="footer-made">Designed with <em>faith & discipline</em> · Kigali 🇷🇼</span>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon-ok" id="toast-icon">✦</span>
+  <span id="toast-msg">Message sent successfully!</span>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- NAV PROGRESS -->
+<div id="nav-progress"></div>
+
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init('JIc5wA5y-FMSLyaJr');
+
+  // --- Scroll Reveal ---
+  const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-scale');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+    });
+  },{threshold:0.12});
+  revealEls.forEach(el=>observer.observe(el));
+
+  // --- Skill bars ---
+  const bars = document.querySelectorAll('.skill-fill');
+  bars.forEach(b=>{
+    const w = b.style.width;
+    b.style.setProperty('--target-width', w);
+    b.style.width = '0';
+  });
+  const skillObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.skill-fill').forEach(b=>b.classList.add('animated'));
+        skillObserver.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  const skillSection = document.querySelector('.skills-wrap');
+  if(skillSection) skillObserver.observe(skillSection);
+
+  // --- Nav progress bar ---
+  const prog = document.getElementById('nav-progress');
+  window.addEventListener('scroll',()=>{
+    const st = window.scrollY;
+    const dh = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (st/dh*100)+'%';
+  });
+
+  // --- Custom cursor ---
+  const dot = document.getElementById('cdot');
+  const ring = document.getElementById('cring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+  function animCursor(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor)}
+  animCursor();
+  document.querySelectorAll('a,button,.work-item,.value-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='26px';ring.style.height='26px'});
+  });
+
+  // --- Toast helper ---
+  function showToast(msg, ok){
+    const t=document.getElementById('toast');
+    const icon=document.getElementById('toast-icon');
+    const txt=document.getElementById('toast-msg');
+    icon.textContent = ok ? '✦' : '✕';
+    icon.className = ok ? 'toast-icon-ok' : 'toast-icon-err';
+    txt.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 4000);
+  }
+
+  // --- EmailJS Send ---
+  document.getElementById('send-btn').addEventListener('click',function(){
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    if(!name||!email||!message){showToast('Please fill in all fields ✦',false);return;}
+    const btn = this;
+    btn.disabled=true;
+    document.getElementById('btn-text').textContent='Sending…';
+    document.getElementById('btn-icon').textContent='⟳';
+    emailjs.send('service_1xy7s1r','template_6qm2bwe',{name,email,message})
+      .then(()=>{
+        showToast('Message sent! I'll get back to you soon ✦', true);
+        document.getElementById('cf-name').value='';
+        document.getElementById('cf-email').value='';
+        document.getElementById('cf-message').value='';
+        btn.disabled=false;
+        document.getElementById('btn-text').textContent='Send Message';
+        document.getElementById('btn-icon').textContent='↗';
+      })
+      .catch(()=>{
+        showToast('Something went wrong. Try emailing me directly ✕', false);
+        btn.disabled=false;
+        document.getElementById('btn-text').textContent='Send Message';
+        document.getElementById('btn-icon').textContent='↗';
+      });
+  });
+  // Nav scroll effect
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  window.addEventListener('scroll',()=>{
+    let current='';
+    sections.forEach(s=>{
+      if(window.scrollY >= s.offsetTop - 120) current=s.id;
+    });
+    navLinks.forEach(a=>{
+      a.classList.remove('active');
+      if(a.getAttribute('href')==='#'+current) a.classList.add('active');
+    });
+  });
+})();
+</script>
 </body>
 </html>
