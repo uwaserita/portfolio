@@ -16,6 +16,137 @@ Hi! I'm Uwaserita, a passionate developer creating amazing web experiences. I lo
 - **Tools:** Git, GitHub, Web Design
 - **Other:** Problem Solving, Version Control
 
+## 💻 My Code
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Uwaserita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .skill {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>👋 Welcome to My Portfolio</h1>
+        <p>Full-Stack Developer | Creative Problem Solver</p>
+    </header>
+    
+    <div class="content">
+        <div class="section">
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm Uwaserita, a passionate developer creating amazing web experiences.
+                I love building projects that make a difference and learning new technologies.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill">HTML/CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">React</div>
+                <div class="skill">Git & GitHub</div>
+                <div class="skill">Web Design</div>
+                <div class="skill">Problem Solving</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Projects</h2>
+            <p>Check out my repositories on GitHub to see my latest work and contributions.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Connect with me:</p>
+        <a href="https://github.com/uwaserita">GitHub</a>
+        <p>&copy; 2026 Uwaserita. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+```
+
 ## 📁 Projects
 
 Check out my repositories to see my latest work and contributions!
